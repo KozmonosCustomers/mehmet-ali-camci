@@ -1,0 +1,18 @@
+backend:
+  name: git-gateway   # Netlify kullanıyorsan
+  branch: main
+
+media_folder: "assets"     # videolar repo'da buraya kaydedilecek
+public_folder: "/assets"   # siten erişirken /assets/... olarak çağıracak
+
+collections:
+  - name: "videolar"
+    label: "Video Galerisi"
+    folder: "content/videos"
+    create: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - { label: "Başlık", name: "title", widget: "string" }
+      - { label: "Video", name: "file", widget: "file" }
