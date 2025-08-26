@@ -2,6 +2,10 @@ backend:
   name: git-gateway   # Netlify kullanıyorsan
   branch: main
 
+i18n:
+  default_locale: tr
+  locales: [tr]
+
 media_folder: "assets"     # videolar repo'da buraya kaydedilecek
 public_folder: "/assets"   # siten erişirken /assets/... olarak çağıracak
 
