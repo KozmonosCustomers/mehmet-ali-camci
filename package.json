@@ -2,10 +2,7 @@
   "name": "mehmet-camci",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "build": "npm run merge-videos",
-    "merge-videos": "node merge-videos.js"
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
