@@ -779,22 +779,31 @@
             <div class="video-gallery" id="videoGallery"></div>
 
             <script>
-            fetch("videos.json")
-              .then(r => r.json())
-              .then(videos => {
-                const gallery = document.getElementById("videoGallery");
-                gallery.innerHTML = videos.map(v => `
-                  <div class="video-card" data-video="${v.file}">
-                    <video muted loop>
-                      <source src="${v.file}" type="video/mp4">
-                    </video>
-                    <div class="video-overlay">
-                      <div class="play-button"><i class="fas fa-play"></i></div>
-                    </div>
-                  </div>
-                `).join("");
-              });
-            </script>
+                fetch("/content/site.json")
+                  .then(r => r.json())
+                  .then(data => {
+                    const hero = document.querySelector("#home.hero");
+                    if (data.featured_image) {
+                      hero.style.backgroundImage = `url('${data.featured_image}')`;
+                      hero.style.backgroundSize = "cover";
+                      hero.style.backgroundPosition = "center";
+                      hero.style.backgroundRepeat = "no-repeat";
+                    }
+                
+                    const videos = Array.isArray(data.videos) ? data.videos : [];
+                    const gallery = document.getElementById("videoGallery");
+                    gallery.innerHTML = videos.map(v => `
+                      <div class="video-card" data-video="${v.file}">
+                        <video muted loop>
+                          <source src="${v.file}" type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                          <div class="play-button"><i class="fas fa-play"></i></div>
+                        </div>
+                      </div>
+                    `).join("");
+                  });
+                </script>
             
         </div>
     </section>
