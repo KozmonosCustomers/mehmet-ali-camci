@@ -573,7 +573,8 @@
             color: #2c3e50;
         }
 
-        .contact-card p {
+        .contact-card p,
+        .contact-link {
             color: #6c757d;
             font-size: 1.1rem;
             font-weight: 500;
@@ -600,12 +601,17 @@
             font-size: 1.2rem;
         }
 
-        .footer-section p {
+        .footer-section p,
+        .footer-section a {
             margin-bottom: 0.5rem;
             opacity: 0.9;
+            text-decoration: none;
+            color: #ffffff;
+            display: block;
         }
 
-        .footer-section p i {
+        .footer-section p i,
+        .footer-section a i {
             margin-right: 0.5rem;
             color: #ffc107;
         }
@@ -697,8 +703,8 @@
         <div class="hero-content">
             <div class="experience-badge">24 Yıllık Deneyim - 2001'den Beri</div>
             <h1>Ensi Cam</h1>
-            <p>1250 m² kapalı alanda modern fabrikamızda, cam kesim hattımız ve otomatik ısıcam ve kobotlu taharı
-                hattımızla sizlere daha kaliteli ürünler sunuyoruz. <strong>Kalite asla tesadüf değildir.</strong></p>
+            <p>1250 m² kapalı alanda fabrikamızda, cam kesim hattımız ve otomatik ısıcam ie sizlere daha kaliteli
+                ürünler sunuyoruz. <strong>Kalite asla tesadüf değildir.</strong></p>
             <div>
                 <a href="#products" class="cta-button">Ürünlerimizi İncele</a>
                 <a href="#contact" class="cta-button secondary">İletişime Geç</a>
@@ -841,22 +847,20 @@
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fas fa-phone"></i></div>
                     <h3>Telefon</h3>
-                    <p>+90 (212) 123 45 67</p>
+                    <a target="_blank" class="contact-link" href="tel:+905425169811">+90 (0542) 516 98 11</a>
                 </div>
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                     <h3>E-posta</h3>
-                    <p>info@premiumcam.com</p>
+                    <a target="_blank" class="contact-link" href="mailto:ensiglass@gmail.com">ensiglass@gmail.com</a>
                 </div>
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <h3>Adres</h3>
-                    <p>Ataşehir, İstanbul<br>1250 m² Modern Fabrika</p>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon"><i class="fas fa-clock"></i></div>
-                    <h3>Çalışma Saatleri</h3>
-                    <p>Pazartesi - Cumartesi<br>08:00 - 18:00</p>
+                    <a target="_blank" href="https://maps.app.goo.gl/nXYmXXWqWy4JwvYZ7"
+                        class="contact-link">Yenimahalle, Ankara<br>1250
+                        m² Modern
+                        Fabrika</a>
                 </div>
             </div>
         </div>
@@ -889,9 +893,11 @@
                 </div>
                 <div class="footer-section">
                     <h3>İletişim</h3>
-                    <p><i class="fas fa-phone"></i> +90 (212) 123 45 67</p>
-                    <p><i class="fas fa-envelope"></i> info@premiumcam.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Ataşehir, İstanbul</p>
+                    <a target="_blank" href="tel:+905425169811"><i class="fas fa-phone"></i> +90 (0542) 516 98 11</a>
+                    <a target="_blank" href="mailto:ensiglass@gmail.com"><i class="fas fa-envelope"></i>
+                        ensiglass@gmail.com</a>
+                    <a target="_blank" href="https://maps.app.goo.gl/nXYmXXWqWy4JwvYZ7"><i
+                            class="fas fa-map-marker-alt"></i> Yenimahalle, Ankara</a>
                 </div>
             </div>
             <div class="footer-bottom">
