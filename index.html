@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/logo.png">
     <title>Ensi Cam - 24 Yıllık Deneyim</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google tag (gtag.js) -->
@@ -310,6 +311,10 @@
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(255, 193, 7, 0.2);
             border-color: #ffc107;
+        }
+
+        .product-card[data-product] {
+            cursor: pointer;
         }
 
         .product-icon {
@@ -715,8 +720,10 @@
             <p>1250 m² kapalı alanda fabrikamızda, cam kesim hattımız ve otomatik ısıcam ie sizlere daha kaliteli
                 ürünler sunuyoruz. <strong>Kalite asla tesadüf değildir.</strong></p>
             <div>
-                <a href="#products" class="cta-button">Ürünlerimizi İncele</a>
-                <a href="#contact" class="cta-button secondary">İletişime Geç</a>
+                <a href="#products" class="cta-button"
+                    onclick="trackCTA('Ürünlerimizi İncele', 'hero_section')">Ürünlerimizi İncele</a>
+                <a href="#contact" class="cta-button secondary"
+                    onclick="trackCTA('İletişime Geç', 'hero_section')">İletişime Geç</a>
             </div>
         </div>
     </section>
@@ -762,37 +769,43 @@
             <h2 class="section-title">Ürünlerimiz</h2>
             <p class="section-subtitle">Geniş ürün yelpazemiz ile tüm cam ihtiyaçlarınıza çözüm</p>
             <div class="products-grid">
-                <div class="product-card">
+                <div class="product-card" data-product="isi-yalitimli-cift-cam"
+                    onclick="trackEvent('product_click', {product_name: 'Isı Yalıtımlı Çift Cam', product_category: 'insulation'})">
                     <div class="product-icon"><i class="fas fa-thermometer-half"></i></div>
                     <h3>Isı Yalıtımlı Çift Cam</h3>
                     <p>Enerji tasarrufu sağlayan, yüksek yalıtım performansına sahip çift cam sistemleri. Kış ve yaz
                         aylarında optimal iç mekan sıcaklığı için ideal çözüm.</p>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-product="sinerji-cam"
+                    onclick="trackEvent('product_click', {product_name: 'Sinerji Cam', product_category: 'energy_efficient'})">
                     <div class="product-icon"><i class="fas fa-bolt"></i></div>
                     <h3>Sinerji Cam</h3>
                     <p>Düşük emisyon kaplama teknolojisi ile üretilen, üstün enerji verimliliği sağlayan yenilikçi cam
                         çözümleri.</p>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-product="konfor-cam"
+                    onclick="trackEvent('product_click', {product_name: 'Konfor Cam', product_category: 'comfort'})">
                     <div class="product-icon"><i class="fas fa-home"></i></div>
                     <h3>Konfor Cam</h3>
                     <p>Günlük yaşamda konfor ve rahatlığı ön planda tutan, ses yalıtımı ve ısı kontrolü sağlayan konfor
                         cam serileri.</p>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-product="lamine-cam"
+                    onclick="trackEvent('product_click', {product_name: 'Lamine Cam', product_category: 'safety'})">
                     <div class="product-icon"><i class="fas fa-shield-alt"></i></div>
                     <h3>Lamine Cam</h3>
                     <p>Güvenlik ve koruma odaklı lamine cam sistemleri. Kırılmaya karşı dayanıklı, güvenli kullanım için
                         tasarlandı.</p>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-product="dekoratif-cam"
+                    onclick="trackEvent('product_click', {product_name: 'Dekoratif Cam', product_category: 'decorative'})">
                     <div class="product-icon"><i class="fas fa-palette"></i></div>
                     <h3>Dekoratif Cam</h3>
                     <p>Estetik ve fonksiyonelliği bir araya getiren dekoratif cam çözümleri. Mekanlarınıza sanatsal
                         dokunuş katın.</p>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-product="temperli-cam"
+                    onclick="trackEvent('product_click', {product_name: 'Temperli Cam', product_category: 'safety'})">
                     <div class="product-icon"><i class="fas fa-dumbbell"></i></div>
                     <h3>Temperli Cam</h3>
                     <p>Yüksek mukavemet ve güvenlik standartlarına sahip temperli cam ürünleri. Dayanıklılık ve güvenlik
@@ -856,18 +869,20 @@
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fas fa-phone"></i></div>
                     <h3>Telefon</h3>
-                    <a target="_blank" class="contact-link" href="tel:+905425169811">+90 (0542) 516 98 11</a>
+                    <a target="_blank" class="contact-link" href="tel:+905425169811" onclick="trackContact('phone')">+90
+                        (0542) 516 98 11</a>
                 </div>
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                     <h3>E-posta</h3>
-                    <a target="_blank" class="contact-link" href="mailto:ensiglass@gmail.com">ensiglass@gmail.com</a>
+                    <a target="_blank" class="contact-link" href="mailto:ensiglass@gmail.com"
+                        onclick="trackContact('email')">ensiglass@gmail.com</a>
                 </div>
                 <div class="contact-card">
                     <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <h3>Adres</h3>
-                    <a target="_blank" href="https://maps.app.goo.gl/nXYmXXWqWy4JwvYZ7"
-                        class="contact-link">Yenimahalle, Ankara<br>1250
+                    <a target="_blank" href="https://maps.app.goo.gl/nXYmXXWqWy4JwvYZ7" class="contact-link"
+                        onclick="trackContact('map')">Yenimahalle, Ankara<br>1250
                         m² Modern
                         Fabrika</a>
                 </div>
@@ -902,11 +917,14 @@
                 </div>
                 <div class="footer-section">
                     <h3>İletişim</h3>
-                    <a target="_blank" href="tel:+905425169811"><i class="fas fa-phone"></i> +90 (0542) 516 98 11</a>
-                    <a target="_blank" href="mailto:ensiglass@gmail.com"><i class="fas fa-envelope"></i>
+                    <a target="_blank" href="tel:+905425169811" onclick="trackContact('phone_footer')"><i
+                            class="fas fa-phone"></i> +90 (0542) 516 98 11</a>
+                    <a target="_blank" href="mailto:ensiglass@gmail.com" onclick="trackContact('email_footer')"><i
+                            class="fas fa-envelope"></i>
                         ensiglass@gmail.com</a>
-                    <a target="_blank" href="https://maps.app.goo.gl/nXYmXXWqWy4JwvYZ7"><i
-                            class="fas fa-map-marker-alt"></i> Yenimahalle, Ankara</a>
+                    <a target="_blank" href="https://maps.app.goo.gl/nXYmXXWqWy4JwvYZ7"
+                        onclick="trackContact('map_footer')"><i class="fas fa-map-marker-alt"></i> Yenimahalle,
+                        Ankara</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -916,8 +934,57 @@
     </footer>
 
     <script>
+        // Google Analytics Event Tracking Functions
+        function trackEvent(eventName, parameters = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, parameters);
+            }
+        }
+
+        function trackVideoEvent(action, videoName) {
+            trackEvent('video_interaction', {
+                action: action,
+                video_name: videoName,
+                content_type: 'video'
+            });
+        }
+
+        function trackNavigation(section) {
+            trackEvent('navigation_click', {
+                section: section,
+                page_location: window.location.pathname
+            });
+        }
+
+        function trackContact(method) {
+            trackEvent('contact_click', {
+                contact_method: method,
+                page_location: window.location.pathname
+            });
+        }
+
+        function trackCTA(buttonText, buttonLocation) {
+            trackEvent('cta_click', {
+                button_text: buttonText,
+                button_location: buttonLocation
+            });
+        }
+
+        function trackSectionView(sectionName) {
+            trackEvent('section_view', {
+                section_name: sectionName,
+                page_location: window.location.pathname
+            });
+        }
+
         // Wait for DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function () {
+            // Track page load
+            trackEvent('page_view', {
+                page_title: document.title,
+                page_location: window.location.pathname,
+                page_referrer: document.referrer || 'direct'
+            });
             // Video Modal Functions
             function openVideoModal(videoSrc) {
                 const modal = document.getElementById('videoModal');
@@ -927,6 +994,10 @@
                     modalVideo.src = videoSrc;
                     modal.classList.add('active');
                     document.body.style.overflow = 'hidden';
+
+                    // Track video modal open event
+                    const videoFileName = videoSrc.split('/').pop();
+                    trackVideoEvent('modal_open', videoFileName);
 
                     // Auto play when modal opens
                     setTimeout(() => {
@@ -944,6 +1015,9 @@
                     document.body.style.overflow = '';
                     modalVideo.pause();
                     modalVideo.src = '';
+
+                    // Track video modal close event
+                    trackVideoEvent('modal_close', 'video_modal');
                 }
             }
 
@@ -980,11 +1054,17 @@
                                 // Silently handle autoplay restrictions
                             });
                         }
+                        // Track video hover event
+                        const videoFileName = videoSrc.split('/').pop();
+                        trackVideoEvent('hover_start', videoFileName);
                     });
 
                     card.addEventListener('mouseleave', () => {
                         video.pause();
                         video.currentTime = 0;
+                        // Track video hover end event
+                        const videoFileName = videoSrc.split('/').pop();
+                        trackVideoEvent('hover_end', videoFileName);
                     });
 
                     // Click to open modal
@@ -1017,6 +1097,9 @@
                     e.preventDefault();
                     const target = document.querySelector(this.getAttribute('href'));
                     if (target) {
+                        const section = this.getAttribute('href').substring(1);
+                        trackNavigation(section);
+
                         target.scrollIntoView({
                             behavior: 'smooth',
                             block: 'start'
@@ -1060,6 +1143,27 @@
 
             // Run initial animation
             setTimeout(animateStats, 500);
+
+            // Section View Tracking with Intersection Observer
+            const sections = document.querySelectorAll('section[id]');
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionName = entry.target.id;
+                        trackSectionView(sectionName);
+                        // Unobserve after first view to avoid duplicate tracking
+                        sectionObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.5, // Trigger when 50% of section is visible
+                rootMargin: '0px 0px -100px 0px'
+            });
+
+            // Observe all sections
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
         });
 
         // Header transparency on scroll (can run immediately)
