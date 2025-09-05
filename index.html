@@ -532,7 +532,7 @@
 
         @media (max-width: 768px) {
             .video-card video {
-                height: 120px;
+                height: 180px;
                 background: #f0f0f0;
                 object-fit: cover;
                 -webkit-playsinline: true;
@@ -542,20 +542,33 @@
             }
 
             .video-placeholder {
-                height: 120px;
-                font-size: 0.9rem;
+                height: 180px;
+                font-size: 1rem;
             }
 
             .video-gallery {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
+                gap: 1rem;
             }
 
             .video-card {
                 background: #f0f0f0;
-                min-height: 120px;
+                min-height: 180px;
                 position: relative;
                 overflow: hidden;
+                cursor: pointer;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .play-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+            }
+
+            .play-button i {
+                font-size: 1.4rem;
             }
         }
 
@@ -1405,10 +1418,22 @@
                         trackVideoEvent('hover_end', videoFileName);
                     });
 
-                    // Click to open modal
-                    card.addEventListener('click', () => {
+                    // Click to open modal - make entire card clickable
+                    card.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
                         openVideoModal(videoSrc);
                     });
+
+                    // Also make play button clickable
+                    const playButton = card.querySelector('.play-button');
+                    if (playButton) {
+                        playButton.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            openVideoModal(videoSrc);
+                        });
+                    }
                 }
             });
 
