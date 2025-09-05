@@ -1086,7 +1086,7 @@
                         gallery.innerHTML = videos.map(v => `
                       <div class="video-card" data-video="${v.file}" onclick="openVideoModal('${v.file}')">
                         <video muted loop preload="metadata" playsinline>
-                          <source src="${v.file}" type="video/mp4">
+                          <source src="${v.file}#t=0.001" type="video/mp4">
                         </video>
                         <div class="video-overlay">
                           <div class="play-button"><i class="fas fa-play"></i></div>
