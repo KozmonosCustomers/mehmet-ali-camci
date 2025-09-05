@@ -513,6 +513,8 @@
             object-fit: cover;
             background: #f0f0f0;
             display: block;
+            -webkit-playsinline: true;
+            playsinline: true;
         }
 
         .video-placeholder {
@@ -533,6 +535,10 @@
                 height: 120px;
                 background: #f0f0f0;
                 object-fit: cover;
+                -webkit-playsinline: true;
+                playsinline: true;
+                width: 100%;
+                display: block;
             }
 
             .video-placeholder {
@@ -548,6 +554,8 @@
             .video-card {
                 background: #f0f0f0;
                 min-height: 120px;
+                position: relative;
+                overflow: hidden;
             }
         }
 
@@ -560,6 +568,7 @@
             padding: 8px;
             opacity: 1;
             transition: all 0.3s ease;
+            overflow: hidden;
         }
 
         .play-button {
@@ -583,6 +592,16 @@
         .play-button:hover {
             transform: scale(1.1);
             background: rgba(0, 0, 0, 0.8);
+        }
+
+        .play-button:focus {
+            outline: none;
+            border-radius: 50%;
+        }
+
+        .play-button:active {
+            transform: scale(0.95);
+            background: rgba(0, 0, 0, 0.9);
         }
 
         /* Video Modal */
@@ -1070,8 +1089,10 @@
                         const gallery = document.getElementById("videoGallery");
                         gallery.innerHTML = videos.map(v => `
                       <div class="video-card" data-video="${v.file}">
-                        <video muted loop>
+                        <video muted loop preload="metadata" playsinline webkit-playsinline>
                           <source src="${v.file}" type="video/mp4">
+                          <source src="${v.file}" type="video/webm">
+                          Tarayıcınız video oynatmayı desteklemiyor.
                         </video>
                         <div class="video-overlay">
                           <div class="play-button"><i class="fas fa-play"></i></div>
@@ -1082,6 +1103,26 @@
                         // Trigger scroll animations for newly added video cards
                         setTimeout(() => {
                             handleScrollAnimations();
+                            
+                            // Add video loading handlers
+                            document.querySelectorAll('.video-card video').forEach(video => {
+                                video.addEventListener('loadeddata', function() {
+                                    console.log('Video loaded:', this.src);
+                                });
+                                
+                                video.addEventListener('error', function(e) {
+                                    console.error('Video load error:', e);
+                                    this.style.display = 'none';
+                                    const placeholder = document.createElement('div');
+                                    placeholder.className = 'video-placeholder';
+                                    placeholder.innerHTML = 'Video yüklenemedi';
+                                    this.parentNode.appendChild(placeholder);
+                                });
+                                
+                                video.addEventListener('canplay', function() {
+                                    console.log('Video can play:', this.src);
+                                });
+                            });
                         }, 100);
                     });
             </script>
