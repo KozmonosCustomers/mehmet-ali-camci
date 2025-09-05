@@ -513,8 +513,6 @@
             object-fit: cover;
             background: #f0f0f0;
             display: block;
-            -webkit-playsinline: true;
-            playsinline: true;
         }
 
         .video-placeholder {
@@ -532,17 +530,15 @@
 
         @media (max-width: 768px) {
             .video-card video {
-                height: 180px;
-                background: #f0f0f0;
-                object-fit: cover;
-                -webkit-playsinline: true;
-                playsinline: true;
+                height: 200px;
                 width: 100%;
+                object-fit: cover;
                 display: block;
+                background: #e0e0e0;
             }
 
             .video-placeholder {
-                height: 180px;
+                height: 200px;
                 font-size: 1rem;
             }
 
@@ -552,23 +548,10 @@
             }
 
             .video-card {
-                background: #f0f0f0;
-                min-height: 180px;
+                background: #e0e0e0;
+                min-height: 200px;
                 position: relative;
                 overflow: hidden;
-                cursor: pointer;
-                touch-action: manipulation;
-                -webkit-tap-highlight-color: transparent;
-            }
-
-            .play-button {
-                width: 50px;
-                height: 50px;
-                font-size: 1.4rem;
-            }
-
-            .play-button i {
-                font-size: 1.4rem;
             }
         }
 
@@ -1101,11 +1084,9 @@
                         const videos = Array.isArray(data.videos) ? data.videos : [];
                         const gallery = document.getElementById("videoGallery");
                         gallery.innerHTML = videos.map(v => `
-                      <div class="video-card" data-video="${v.file}">
-                        <video muted loop preload="metadata" playsinline webkit-playsinline>
+                      <div class="video-card" data-video="${v.file}" onclick="openVideoModal('${v.file}')">
+                        <video muted loop preload="metadata" playsinline>
                           <source src="${v.file}" type="video/mp4">
-                          <source src="${v.file}" type="video/webm">
-                          Tarayıcınız video oynatmayı desteklemiyor.
                         </video>
                         <div class="video-overlay">
                           <div class="play-button"><i class="fas fa-play"></i></div>
@@ -1116,26 +1097,6 @@
                         // Trigger scroll animations for newly added video cards
                         setTimeout(() => {
                             handleScrollAnimations();
-
-                            // Add video loading handlers
-                            document.querySelectorAll('.video-card video').forEach(video => {
-                                video.addEventListener('loadeddata', function () {
-                                    console.log('Video loaded:', this.src);
-                                });
-
-                                video.addEventListener('error', function (e) {
-                                    console.error('Video load error:', e);
-                                    this.style.display = 'none';
-                                    const placeholder = document.createElement('div');
-                                    placeholder.className = 'video-placeholder';
-                                    placeholder.innerHTML = 'Video yüklenemedi';
-                                    this.parentNode.appendChild(placeholder);
-                                });
-
-                                video.addEventListener('canplay', function () {
-                                    console.log('Video can play:', this.src);
-                                });
-                            });
                         }, 100);
                     });
             </script>
@@ -1418,22 +1379,7 @@
                         trackVideoEvent('hover_end', videoFileName);
                     });
 
-                    // Click to open modal - make entire card clickable
-                    card.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        openVideoModal(videoSrc);
-                    });
-
-                    // Also make play button clickable
-                    const playButton = card.querySelector('.play-button');
-                    if (playButton) {
-                        playButton.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            openVideoModal(videoSrc);
-                        });
-                    }
+                    // Video cards now use simple onclick in HTML
                 }
             });
 
