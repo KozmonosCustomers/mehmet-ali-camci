@@ -1103,14 +1103,14 @@
                         // Trigger scroll animations for newly added video cards
                         setTimeout(() => {
                             handleScrollAnimations();
-                            
+
                             // Add video loading handlers
                             document.querySelectorAll('.video-card video').forEach(video => {
-                                video.addEventListener('loadeddata', function() {
+                                video.addEventListener('loadeddata', function () {
                                     console.log('Video loaded:', this.src);
                                 });
-                                
-                                video.addEventListener('error', function(e) {
+
+                                video.addEventListener('error', function (e) {
                                     console.error('Video load error:', e);
                                     this.style.display = 'none';
                                     const placeholder = document.createElement('div');
@@ -1118,8 +1118,8 @@
                                     placeholder.innerHTML = 'Video yüklenemedi';
                                     this.parentNode.appendChild(placeholder);
                                 });
-                                
-                                video.addEventListener('canplay', function() {
+
+                                video.addEventListener('canplay', function () {
                                     console.log('Video can play:', this.src);
                                 });
                             });
