@@ -1071,7 +1071,7 @@
                         const videos = Array.isArray(data.videos) ? data.videos : [];
                         const gallery = document.getElementById("videoGallery");
                         gallery.innerHTML = videos.map(v => `
-                      <div class="video-card fade-in" data-video="${v.file}">
+                      <div class="video-card" data-video="${v.file}">
                         <video muted loop>
                           <source src="${v.file}" type="video/mp4">
                         </video>
