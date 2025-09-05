@@ -553,46 +553,36 @@
 
         .video-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 193, 7, 0.4), rgba(255, 152, 0, 0.4));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-        }
-
-        .video-card:hover .video-overlay {
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            padding: 8px;
             opacity: 1;
+            transition: all 0.3s ease;
         }
 
         .play-button {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.95);
-
+            width: 40px;
+            height: 40px;
+            background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            color: #ffc107;
+            font-size: 1.2rem;
+            color: #ffffff;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .play-button i {
-            font-size: 2rem;
-            color: #ffc107;
+            font-size: 1.2rem;
+            color: #ffffff;
         }
 
         .play-button:hover {
             transform: scale(1.1);
-            background: #ffffff;
+            background: rgba(0, 0, 0, 0.8);
         }
 
         /* Video Modal */
