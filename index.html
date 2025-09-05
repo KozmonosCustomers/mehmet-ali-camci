@@ -513,9 +513,6 @@
             object-fit: cover;
             background: #f0f0f0;
             display: block;
-            -webkit-playsinline: true;
-            -webkit-media-controls: none;
-            -webkit-appearance: none;
         }
 
         .video-placeholder {
@@ -538,9 +535,6 @@
                 object-fit: cover;
                 display: block;
                 background: #e0e0e0;
-                -webkit-playsinline: true;
-                -webkit-media-controls: none;
-                -webkit-appearance: none;
             }
 
             .video-placeholder {
@@ -558,16 +552,6 @@
                 min-height: 200px;
                 position: relative;
                 overflow: hidden;
-            }
-        }
-
-        /* iOS Safari specific fixes */
-        @supports (-webkit-touch-callout: none) {
-            .video-card video {
-                -webkit-playsinline: true;
-                -webkit-media-controls: none;
-                -webkit-appearance: none;
-                background: #e0e0e0;
             }
         }
 
@@ -1101,7 +1085,7 @@
                         const gallery = document.getElementById("videoGallery");
                         gallery.innerHTML = videos.map(v => `
                       <div class="video-card" data-video="${v.file}" onclick="openVideoModal('${v.file}')">
-                        <video muted loop preload="metadata" playsinline webkit-playsinline controls="false">
+                        <video muted loop preload="metadata" playsinline>
                           <source src="${v.file}" type="video/mp4">
                         </video>
                         <div class="video-overlay">
@@ -1113,21 +1097,6 @@
                         // Trigger scroll animations for newly added video cards
                         setTimeout(() => {
                             handleScrollAnimations();
-
-                            // iOS Safari video loading fix
-                            document.querySelectorAll('.video-card video').forEach(video => {
-                                // Force load on iOS
-                                video.load();
-
-                                // iOS Safari specific event handling
-                                video.addEventListener('loadedmetadata', function () {
-                                    console.log('Video metadata loaded on iOS');
-                                });
-
-                                video.addEventListener('canplay', function () {
-                                    console.log('Video can play on iOS');
-                                });
-                            });
                         }, 100);
                     });
             </script>
