@@ -199,6 +199,8 @@
             position: relative;
             overflow: hidden;
             perspective: 1000px;
+            z-index: 1;
+            margin-top: 65px;
         }
 
         .hero-swiper {
@@ -1019,6 +1021,7 @@
         @media (max-width: 768px) {
             .hero-slider {
                 min-height: 50vh;
+                margin-top: 65px;
             }
 
             .hero-swiper {
@@ -1360,24 +1363,24 @@
                                      <div class="video-card youtube-card" data-video="${v.file}" onclick="openVideoModal('${v.file}')">
                                        <div class="youtube-thumbnail">
                                          <img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="YouTube Video" />
-                                         <div class="video-overlay">
+                    <div class="video-overlay">
                                            <div class="play-button"><i class="fas fa-play"></i></div>
-                                         </div>
-                                       </div>
+                    </div>
+                </div>
                                        ${v.title ? `<div class="video-title">${v.title}</div>` : ''}
-                                     </div>
+                    </div>
                                  `;
                             } else {
                                 return `
                                      <div class="video-card" data-video="${v.file}" onclick="openVideoModal('${v.file}')">
                                        <video muted loop preload="metadata" playsinline>
                                          <source src="${v.file}#t=0.001" type="video/mp4">
-                                       </video>
-                                       <div class="video-overlay">
+                    </video>
+                    <div class="video-overlay">
                                          <div class="play-button"><i class="fas fa-play"></i></div>
-                                       </div>
+                    </div>
                                        ${v.title ? `<div class="video-title">${v.title}</div>` : ''}
-                                     </div>
+                </div>
                                  `;
                             }
                         }).join("");
