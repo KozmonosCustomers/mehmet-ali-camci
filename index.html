@@ -201,6 +201,21 @@
             perspective: 1000px;
             z-index: 1;
             margin-top: 65px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: sliderLoadIn 1.2s ease-out forwards;
+        }
+
+        @keyframes sliderLoadIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-swiper {
@@ -221,6 +236,21 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
+            opacity: 0;
+            transform: scale(1.1);
+            animation: imageLoadIn 1.5s ease-out 0.3s forwards;
+        }
+
+        @keyframes imageLoadIn {
+            0% {
+                opacity: 0;
+                transform: scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         /* İlk slide normal tonda */
@@ -256,6 +286,21 @@
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: navLoadIn 1s ease-out 1s forwards;
+        }
+
+        @keyframes navLoadIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-swiper .swiper-button-next:hover,
@@ -285,6 +330,21 @@
 
         .hero-swiper .swiper-pagination {
             bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: paginationLoadIn 1s ease-out 1.2s forwards;
+        }
+
+        @keyframes paginationLoadIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* About Section */
