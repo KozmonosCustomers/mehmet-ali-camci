@@ -7,6 +7,8 @@
     <link rel="icon" type="image/png" href="assets/logo.png">
     <title>Ensi Cam - 24 Yıllık Deneyim</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TY50K29PJB"></script>
     <script>
@@ -191,17 +193,153 @@
             width: 100%;
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 50vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+        /* Hero Slider Section */
+        .hero-slider {
+            min-height: 60vh;
             position: relative;
-            background: #ffffff;
-            padding: 2rem 0;
-            padding-top: 75px;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .hero-swiper {
+            width: 100%;
+            height: 60vh;
+            transform-style: preserve-3d;
+        }
+
+
+        .hero-slide {
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .slider-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* İlk slide normal tonda */
+        .hero-slide:first-child .slider-image {
+            filter: brightness(1) contrast(1) saturate(1);
+        }
+
+        /* İkinci slide normal tonda */
+        .hero-slide:nth-child(2) .slider-image {
+            filter: brightness(1) contrast(1) saturate(1);
+        }
+
+        /* Diğer slide'lar için varsayılan */
+        .hero-slide:nth-child(n+3) .slider-image {
+            filter: brightness(0.9) contrast(0.9) saturate(0.8);
+        }
+
+        .hero-slide:hover .slider-image {
+            transform: scale(1.02);
+            transition: transform 0.3s ease;
+        }
+
+
+
+        /* Swiper Navigation Styles */
+        .hero-swiper .swiper-button-next,
+        .hero-swiper .swiper-button-prev {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .hero-swiper .swiper-button-next:hover,
+        .hero-swiper .swiper-button-prev:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        .hero-swiper .swiper-button-next:after,
+        .hero-swiper .swiper-button-prev:after {
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .hero-swiper .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.5);
+            width: 12px;
+            height: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .hero-swiper .swiper-pagination-bullet-active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        .hero-swiper .swiper-pagination {
+            bottom: 30px;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content p {
+            font-size: 16px !important;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .about-content strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .signature {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .signature em {
+            font-style: italic;
+            font-size: 24px;
+            color: #2c3e50;
+            font-weight: 300;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .signature em::before,
+        .signature em::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 60px;
+            height: 1px;
+            background: #2c3e50;
+            opacity: 0.3;
+        }
+
+        .signature em::before {
+            left: -80px;
+        }
+
+        .signature em::after {
+            right: -80px;
         }
 
         .hero::before {
@@ -276,6 +414,14 @@
         .cta-button.secondary:hover {
             background: #ffc107;
             color: #ffffff;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
         }
 
         /* Service Cards Section */
@@ -503,17 +649,27 @@
             transition: all 0.3s ease;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             cursor: pointer;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            border-radius: 8px;
+        }
+
+        .video-card .youtube-thumbnail,
+        .video-card video {
+            aspect-ratio: 16/9;
+            flex: 1;
         }
 
         .video-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(255, 193, 7, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             border-color: #ffc107;
         }
 
         .video-card video {
             width: 100%;
-            height: 250px;
+            height: 100%;
             object-fit: cover;
             background: #f0f0f0;
             display: block;
@@ -521,41 +677,40 @@
 
         .video-placeholder {
             width: 100%;
-            height: 250px;
+            height: 100%;
             background: linear-gradient(135deg, #ffc107, #ff9800);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 1.2rem;
-
             font-weight: 600;
         }
 
+        .video-title {
+            background: #ffffff;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333333;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            flex-shrink: 0;
+        }
+
         @media (max-width: 768px) {
-            .video-card video {
-                height: 200px;
-                width: 100%;
-                object-fit: cover;
-                display: block;
-                background: #e0e0e0;
-            }
-
-            .video-placeholder {
-                height: 200px;
-                font-size: 1rem;
-            }
-
             .video-gallery {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
 
             .video-card {
-                background: #e0e0e0;
-                min-height: 200px;
-                position: relative;
-                overflow: hidden;
+                min-height: auto;
+            }
+
+            .video-title {
+                padding: 0.8rem;
+                font-size: 0.9rem;
             }
         }
 
@@ -630,11 +785,13 @@
             max-width: 90vw;
             max-height: 90vh;
             background: #ffffff;
-
             overflow: visible;
             transform: scale(0.8);
             transition: transform 0.3s ease;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            aspect-ratio: 16/9;
+            width: 80vw;
+            max-width: 1200px;
         }
 
         .video-modal.active .modal-content {
@@ -643,11 +800,17 @@
 
         .modal-video {
             width: 100%;
-            height: auto;
-            max-height: 80vh;
+            height: 100%;
             display: block;
-
             overflow: hidden;
+            object-fit: contain;
+        }
+
+        .modal-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
         }
 
         .close-modal {
@@ -854,8 +1017,63 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .hero h1 {
+            .hero-slider {
+                min-height: 50vh;
+            }
+
+            .hero-swiper {
+                height: 50vh;
+            }
+
+            .about-section {
+                padding: 60px 0;
+            }
+
+            .about-content p {
+                font-size: 14px;
+                padding: 0 20px;
+            }
+
+            .signature em {
+                font-size: 18px;
+                letter-spacing: 1px;
+            }
+
+            .signature em::before,
+            .signature em::after {
+                width: 30px;
+            }
+
+            .signature em::before {
+                left: -40px;
+            }
+
+            .signature em::after {
+                right: -40px;
+            }
+
+            .hero-content h1 {
                 font-size: 2.5rem;
+            }
+
+            .hero-content {
+                padding: 0 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-swiper .swiper-button-next,
+            .hero-swiper .swiper-button-prev {
+                width: 40px;
+                height: 40px;
+            }
+
+            .hero-swiper .swiper-button-next:after,
+            .hero-swiper .swiper-button-prev:after {
+                font-size: 14px;
             }
 
             .nav-menu {
@@ -880,8 +1098,9 @@
             }
 
             .modal-content {
-                max-width: 95vw;
-                margin: 20px;
+                width: 95vw;
+                max-width: none;
+                aspect-ratio: 16/9;
             }
 
             .map-wrapper iframe {
@@ -997,6 +1216,7 @@
         <button class="close-mobile-menu" onclick="toggleMobileMenu()">×</button>
         <ul>
             <li><a href="#home" onclick="toggleMobileMenu()">Ana Sayfa</a></li>
+            <li><a href="#about" onclick="toggleMobileMenu()">Hakkımızda</a></li>
             <li><a href="#products" onclick="toggleMobileMenu()">Ürünlerimiz</a></li>
             <li><a href="#portfolio" onclick="toggleMobileMenu()">Portföy</a></li>
             <li><a href="#contact" onclick="toggleMobileMenu()">İletişim</a></li>
@@ -1004,17 +1224,48 @@
         </ul>
     </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="experience-badge">24 Yıllık Deneyim - 2001'den Beri</div>
-            <h1>Ensi Cam</h1>
-            <p>1250 m² kapalı alanda fabrikamızda, cam kesim hattımız ve otomatik ısıcam ile sizlere daha kaliteli
-                ürünler sunuyoruz. <strong>Kalite asla tesadüf değildir.</strong></p>
+    <!-- Hero Slider Section -->
+    <section id="home" class="hero-slider">
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper" id="slider-wrapper">
+                <!-- Slides will be dynamically generated from site.json -->
+            </div>
+
+            <!-- Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
         </div>
     </section>
 
-
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">Hakkımızda</h2>
+            <div class="about-content">
+                <p>
+                    2001 YILINDA KURULAN FİRMAMIZ, ISIYALITIMLI CAM ÜRETİMİNDE UZMANLAŞMIŞ bir ekip ve SON TEKNOLOJİ
+                    MAKİNA EKİPMANLARLA DONATILMIŞ Yuvaköy Mermerciler Sitesinde, kendine ait 1250 m2 FABRİKAMIZDA
+                    hizmet vermektedir.
+                </p>
+                <p>
+                    Daima kaliteli üretim ve zamanında hizmet anlayışını benimseyen firmamız;<br>
+                    <strong>
+                        SON TEKNOLOJİ MAKİNA VE EKİPMANLARLA<br>
+                        CNS CAM KESİM HATTI<br>
+                        OTOMATİK BUTİL MAKİNASI<br>
+                        OTOMATİK YIKAMA VE PRES HATTI<br>
+                        OTOMATİK ROBOT SLİKON MAKİNASIYLA;
+                    </strong>
+                    <br>
+                    ürünlerimizin dayanıklılık ve uzun ömürlü kullanım standartlarını en üst seviyede karşılamaktadır.
+                </p>
+            </div>
+            <div class="signature">
+                <em>CAMA ATILAN İMZA</em>
+            </div>
+        </div>
+    </section>
 
     <!-- Products Section -->
     <section id="products" class="products">
@@ -1062,6 +1313,13 @@
                     <p>Yüksek mukavemet ve güvenlik standartlarına sahip temperli cam ürünleri. Dayanıklılık ve güvenlik
                         bir arada.</p>
                 </div>
+                <div class="product-card fade-in" data-product="jaluzi-cam"
+                    onclick="trackEvent('product_click', {product_name: 'Jaluzi Cam Üretimi', product_category: 'decorative'})">
+                    <div class="product-icon"><i class="fas fa-th"></i></div>
+                    <h3>Jaluzi Cam Üretimi</h3>
+                    <p>Jaluzi perdenin çift cam içinde yer alıyor olmasından dolayı perdeniz kirlenme, yırtılma gibi
+                        etkenlere maruz kalmaz. Evinize ve iş yerinize estetik katar.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1077,33 +1335,75 @@
                 fetch("/content/site.json")
                     .then(r => r.json())
                     .then(data => {
-                        const hero = document.querySelector("#home.hero");
-                        if (data.featured_image) {
-                            hero.style.backgroundImage = `url('${data.featured_image}')`;
-                            hero.style.backgroundSize = "cover";
-                            hero.style.backgroundPosition = "center";
-                            hero.style.backgroundRepeat = "no-repeat";
-                        }
+                        // Slider data is handled separately
 
                         const videos = Array.isArray(data.videos) ? data.videos : [];
                         const gallery = document.getElementById("videoGallery");
-                        gallery.innerHTML = videos.map(v => `
-                      <div class="video-card" data-video="${v.file}" onclick="openVideoModal('${v.file}')">
-                        <video muted loop preload="metadata" playsinline>
-                          <source src="${v.file}#t=0.001" type="video/mp4">
-                        </video>
-                        <div class="video-overlay">
-                          <div class="play-button"><i class="fas fa-play"></i></div>
-                        </div>
-                      </div>
-                    `).join("");
+                        gallery.innerHTML = videos.map(v => {
+                            // Youtube URL ise thumbnail göster, değilse video etiketini göster
+                            if (/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\//.test(v.file)) {
+                                // youtube embed url'sini al - normal video, shorts ve diğer formatları destekle
+                                let videoId = '';
 
-                        // Trigger scroll animations for newly added video cards
+                                // Normal YouTube video
+                                if (v.file.includes('youtube.com/watch') || v.file.includes('youtu.be/')) {
+                                    videoId = v.file.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/);
+                                    videoId = videoId ? videoId[1] : '';
+                                }
+                                // YouTube Shorts
+                                else if (v.file.includes('youtube.com/shorts/')) {
+                                    videoId = v.file.match(/youtube\.com\/shorts\/([^&]+)/);
+                                    videoId = videoId ? videoId[1] : '';
+                                }
+
+                                return `
+                                     <div class="video-card youtube-card" data-video="${v.file}" onclick="openVideoModal('${v.file}')">
+                                       <div class="youtube-thumbnail">
+                                         <img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="YouTube Video" />
+                                         <div class="video-overlay">
+                                           <div class="play-button"><i class="fas fa-play"></i></div>
+                                         </div>
+                                       </div>
+                                       ${v.title ? `<div class="video-title">${v.title}</div>` : ''}
+                                     </div>
+                                 `;
+                            } else {
+                                return `
+                                     <div class="video-card" data-video="${v.file}" onclick="openVideoModal('${v.file}')">
+                                       <video muted loop preload="metadata" playsinline>
+                                         <source src="${v.file}#t=0.001" type="video/mp4">
+                                       </video>
+                                       <div class="video-overlay">
+                                         <div class="play-button"><i class="fas fa-play"></i></div>
+                                       </div>
+                                       ${v.title ? `<div class="video-title">${v.title}</div>` : ''}
+                                     </div>
+                                 `;
+                            }
+                        }).join("");
+
                         setTimeout(() => {
                             handleScrollAnimations();
                         }, 100);
                     });
             </script>
+            <style>
+                .youtube-thumbnail {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    background: #000;
+                }
+
+                .youtube-thumbnail img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+            </style>
+
 
         </div>
     </section>
@@ -1111,9 +1411,7 @@
     <!-- Video Modal -->
     <div class="video-modal" id="videoModal">
         <div class="modal-content">
-            <button class="close-modal"
-                onclick="document.getElementById('videoModal').classList.remove('active'); document.body.style.overflow = ''; document.getElementById('modalVideo').pause(); document.getElementById('modalVideo').src = '';"><i
-                    class="fas fa-times"></i></button>
+            <button class="close-modal" onclick="closeVideoModal()"><i class="fas fa-times"></i></button>
             <video class="modal-video" id="modalVideo" controls></video>
         </div>
     </div>
@@ -1127,13 +1425,13 @@
                 <div class="contact-card fade-in">
                     <div class="contact-icon"><i class="fas fa-phone"></i></div>
                     <h3>Telefon</h3>
-                    <a target="_blank" class="contact-link" href="tel:+905425169811" onclick="trackContact('phone')">+90
-                        (0542) 516 98 11</a>
+                    <a target="_blank" class="contact-link" href="tel:+905323271501" onclick="trackContact('phone')">+90
+                        (532) 327 15 01</a>
                     <div class="mobile-contact-info">
                         <div class="mobile-contact-item">
                             <i class="fas fa-phone"></i>
-                            <a target="_blank" class="contact-link" href="tel:+905425169811"
-                                onclick="trackContact('phone')">+90 (0542) 516 98 11</a>
+                            <a target="_blank" class="contact-link" href="tel:+905323271501"
+                                onclick="trackContact('phone')">+90 (532) 327 15 01</a>
                         </div>
                         <div class="mobile-contact-item">
                             <i class="fas fa-envelope"></i>
@@ -1190,8 +1488,8 @@
                 </div>
                 <div class="footer-section">
                     <h3>İletişim</h3>
-                    <a target="_blank" href="tel:+905425169811" onclick="trackContact('phone_footer')"><i
-                            class="fas fa-phone"></i> +90 (0542) 516 98 11</a>
+                    <a target="_blank" href="tel:+905323271501" onclick="trackContact('phone_footer')"><i
+                            class="fas fa-phone"></i> +90 (532) 327 15 01</a>
                     <a target="_blank" href="mailto:ensiglass@gmail.com" onclick="trackContact('email_footer')"><i
                             class="fas fa-envelope"></i>
                         ensiglass@gmail.com</a>
@@ -1276,18 +1574,84 @@
             const modalVideo = document.getElementById('modalVideo');
 
             if (modal && modalVideo) {
-                modalVideo.src = videoSrc;
+                // Check if it's a YouTube URL
+                if (/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\//.test(videoSrc)) {
+                    // Extract video ID from YouTube URL - support normal videos and shorts
+                    let videoId = '';
+                    let embedUrl = '';
+
+                    // Normal YouTube video - normal boyutları geri yükle
+                    if (videoSrc.includes('youtube.com/watch') || videoSrc.includes('youtu.be/')) {
+                        videoId = videoSrc.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/);
+                        videoId = videoId ? videoId[1] : '';
+                        embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+
+                        // Normal video için modal boyutunu 16:9 oranına çevir
+                        const modalContent = modal.querySelector('.modal-content');
+                        modalContent.style.aspectRatio = '16/9';
+                        modalContent.style.width = '80vw';
+                        modalContent.style.maxWidth = '1200px';
+                    }
+                    // YouTube Shorts
+                    else if (videoSrc.includes('youtube.com/shorts/')) {
+                        videoId = videoSrc.match(/youtube\.com\/shorts\/([^&]+)/);
+                        videoId = videoId ? videoId[1] : '';
+                        embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+
+                        // Shorts için modal boyutunu 9:16 oranına çevir
+                        const modalContent = modal.querySelector('.modal-content');
+                        modalContent.style.aspectRatio = '9/16';
+                        modalContent.style.width = 'min(90vw, 400px)';
+                    }
+
+                    // Replace video element with iframe for YouTube
+                    modalVideo.style.display = 'none';
+
+                    // Remove existing iframe if any
+                    const existingIframe = modal.querySelector('.modal-iframe');
+                    if (existingIframe) {
+                        existingIframe.remove();
+                    }
+
+                    // Create new iframe
+                    const iframe = document.createElement('iframe');
+                    iframe.className = 'modal-iframe';
+                    iframe.src = embedUrl;
+                    iframe.width = '100%';
+                    iframe.height = '100%';
+                    iframe.frameBorder = '0';
+                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                    iframe.allowFullscreen = true;
+
+                    modal.querySelector('.modal-content').appendChild(iframe);
+                } else {
+                    // Regular video file - normal boyutları geri yükle
+                    const modalContent = modal.querySelector('.modal-content');
+                    modalContent.style.aspectRatio = '16/9';
+                    modalContent.style.width = '80vw';
+                    modalContent.style.maxWidth = '1200px';
+
+                    modalVideo.src = videoSrc;
+                    modalVideo.style.display = 'block';
+
+                    // Remove existing iframe if any
+                    const existingIframe = modal.querySelector('.modal-iframe');
+                    if (existingIframe) {
+                        existingIframe.remove();
+                    }
+
+                    // Auto play when modal opens
+                    setTimeout(() => {
+                        modalVideo.play();
+                    }, 300);
+                }
+
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
 
                 // Track video modal open event
                 const videoFileName = videoSrc.split('/').pop();
                 trackVideoEvent('modal_open', videoFileName);
-
-                // Auto play when modal opens
-                setTimeout(() => {
-                    modalVideo.play();
-                }, 300);
             }
         }
 
@@ -1298,8 +1662,24 @@
             if (modal && modalVideo) {
                 modal.classList.remove('active');
                 document.body.style.overflow = '';
+
+                // Reset modal dimensions to default
+                const modalContent = modal.querySelector('.modal-content');
+                modalContent.style.aspectRatio = '16/9';
+                modalContent.style.width = '80vw';
+                modalContent.style.maxWidth = '1200px';
+
+                // Pause and clear regular video
                 modalVideo.pause();
                 modalVideo.src = '';
+                modalVideo.style.display = 'block';
+
+                // Stop YouTube video by clearing src before removing iframe
+                const existingIframe = modal.querySelector('.modal-iframe');
+                if (existingIframe) {
+                    existingIframe.src = '';
+                    existingIframe.remove();
+                }
 
                 // Track video modal close event
                 trackVideoEvent('modal_close', 'video_modal');
@@ -1332,8 +1712,352 @@
             });
         }
 
+        // Initialize Hero Slider
+        function initHeroSlider() {
+            const heroSwiper = new Swiper('.hero-swiper', {
+                // Simple fade effect
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
+                },
+
+                // Autoplay
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+
+                // Loop
+                loop: true,
+
+                // Speed
+                speed: 1000,
+
+                // Navigation
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+
+                // Pagination
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                }
+            });
+        }
+
+        // Custom Animation Functions
+        function addCustomAnimations() {
+            // Add CSS for custom animations
+            const style = document.createElement('style');
+            style.textContent = `
+                 .swiper-animate {
+                     animation-fill-mode: both;
+                     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                 }
+                 
+                 @keyframes slideInFromTop {
+                     0% {
+                         opacity: 0;
+                         transform: translateY(-100px) rotateX(90deg);
+                     }
+                     100% {
+                         opacity: 1;
+                         transform: translateY(0) rotateX(0deg);
+                     }
+                 }
+                 
+                 @keyframes slideInFromBottom {
+                     0% {
+                         opacity: 0;
+                         transform: translateY(100px) rotateX(-90deg);
+                     }
+                     100% {
+                         opacity: 1;
+                         transform: translateY(0) rotateX(0deg);
+                     }
+                 }
+                 
+                 @keyframes slideInFromLeft {
+                     0% {
+                         opacity: 0;
+                         transform: translateX(-100px) rotateY(90deg);
+                     }
+                     100% {
+                         opacity: 1;
+                         transform: translateX(0) rotateY(0deg);
+                     }
+                 }
+                 
+                 @keyframes slideInFromRight {
+                     0% {
+                         opacity: 0;
+                         transform: translateX(100px) rotateY(-90deg);
+                     }
+                     100% {
+                         opacity: 1;
+                         transform: translateX(0) rotateY(0deg);
+                     }
+                 }
+                 
+                 @keyframes zoomInRotate {
+                     0% {
+                         opacity: 0;
+                         transform: scale(0.3) rotate(180deg);
+                     }
+                     100% {
+                         opacity: 1;
+                         transform: scale(1) rotate(0deg);
+                     }
+                 }
+                 
+                 @keyframes flipInX {
+                     0% {
+                         opacity: 0;
+                         transform: perspective(400px) rotateX(90deg);
+                     }
+                     100% {
+                         opacity: 1;
+                         transform: perspective(400px) rotateX(0deg);
+                     }
+                 }
+                 
+                 @keyframes bounceInScale {
+                     0% {
+                         opacity: 0;
+                         transform: scale(0.3);
+                     }
+                     50% {
+                         transform: scale(1.05);
+                     }
+                     70% {
+                         transform: scale(0.9);
+                     }
+                     100% {
+                         opacity: 1;
+                         transform: scale(1);
+                     }
+                 }
+                 
+                 @keyframes cascadingDrop {
+                     0% {
+                         opacity: 0;
+                         transform: translateY(-200px) scale(0.8);
+                     }
+                     30% {
+                         opacity: 0.7;
+                         transform: translateY(-50px) scale(0.9);
+                     }
+                     60% {
+                         opacity: 0.9;
+                         transform: translateY(20px) scale(1.05);
+                     }
+                     80% {
+                         opacity: 1;
+                         transform: translateY(-10px) scale(0.98);
+                     }
+                     100% {
+                         opacity: 1;
+                         transform: translateY(0) scale(1);
+                     }
+                 }
+                 
+                 @keyframes doubleDrop {
+                     0% {
+                         opacity: 0;
+                         transform: translateY(-300px) rotateX(90deg);
+                     }
+                     25% {
+                         opacity: 0.5;
+                         transform: translateY(-150px) rotateX(45deg);
+                     }
+                     50% {
+                         opacity: 0.8;
+                         transform: translateY(-50px) rotateX(0deg);
+                     }
+                     75% {
+                         opacity: 0.9;
+                         transform: translateY(30px) rotateX(-10deg);
+                     }
+                     100% {
+                         opacity: 1;
+                         transform: translateY(0) rotateX(0deg);
+                     }
+                 }
+                 
+                 @keyframes slideDownBounce {
+                     0% {
+                         opacity: 0;
+                         transform: translateY(-100px) scaleY(0.3);
+                     }
+                     40% {
+                         opacity: 0.8;
+                         transform: translateY(10px) scaleY(1.1);
+                     }
+                     70% {
+                         opacity: 0.9;
+                         transform: translateY(-5px) scaleY(0.95);
+                     }
+                     100% {
+                         opacity: 1;
+                         transform: translateY(0) scaleY(1);
+                     }
+                 }
+                 
+                 @keyframes imageDropIn {
+                     0% {
+                         opacity: 0;
+                         transform: translateY(-200px) scale(0.8);
+                     }
+                     20% {
+                         opacity: 0.6;
+                         transform: translateY(-50px) scale(0.9);
+                     }
+                     40% {
+                         opacity: 0.8;
+                         transform: translateY(20px) scale(1.05);
+                     }
+                     60% {
+                         opacity: 0.9;
+                         transform: translateY(-10px) scale(0.98);
+                     }
+                     80% {
+                         opacity: 0.95;
+                         transform: translateY(5px) scale(1.01);
+                     }
+                     100% {
+                         opacity: 1;
+                         transform: translateY(0) scale(1);
+                     }
+                 }
+                 
+                 @keyframes heightExpand {
+                     0% {
+                         opacity: 1;
+                         transform: translateY(-100%) scaleY(0);
+                         transform-origin: top;
+                     }
+                     50% {
+                         opacity: 1;
+                         transform: translateY(0) scaleY(1);
+                         transform-origin: top;
+                     }
+                     75% {
+                         opacity: 1;
+                         transform: translateY(0) scaleY(1);
+                         transform-origin: bottom;
+                     }
+                     100% {
+                         opacity: 0;
+                         transform: translateY(0) scaleY(0);
+                         transform-origin: bottom;
+                     }
+                 }
+                 
+                 @keyframes slideInFromBehind {
+                     0% {
+                         opacity: 0;
+                         transform: scale(1);
+                         z-index: -1;
+                     }
+                     100% {
+                         opacity: 1;
+                         transform: scale(1);
+                         z-index: 1;
+                     }
+                 }
+                 
+                 [data-swiper-animate="slideInFromTop"] {
+                     animation-name: slideInFromTop;
+                 }
+                 
+                 [data-swiper-animate="slideInFromBottom"] {
+                     animation-name: slideInFromBottom;
+                 }
+                 
+                 [data-swiper-animate="slideInFromLeft"] {
+                     animation-name: slideInFromLeft;
+                 }
+                 
+                 [data-swiper-animate="slideInFromRight"] {
+                     animation-name: slideInFromRight;
+                 }
+                 
+                 [data-swiper-animate="zoomInRotate"] {
+                     animation-name: zoomInRotate;
+                 }
+                 
+                 [data-swiper-animate="flipInX"] {
+                     animation-name: flipInX;
+                 }
+                 
+                 [data-swiper-animate="bounceInScale"] {
+                     animation-name: bounceInScale;
+                 }
+                 
+                 [data-swiper-animate="cascadingDrop"] {
+                     animation-name: cascadingDrop;
+                 }
+                 
+                 [data-swiper-animate="doubleDrop"] {
+                     animation-name: doubleDrop;
+                 }
+                 
+                 [data-swiper-animate="slideDownBounce"] {
+                     animation-name: slideDownBounce;
+                 }
+                 
+                 .height-expand {
+                     animation: heightExpand 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+                 }
+                 
+                 .slide-from-behind {
+                     animation: slideInFromBehind 0.8s ease-in-out forwards;
+                 }
+             `;
+            document.head.appendChild(style);
+        }
+
+        // Load slider data from site.json
+        async function loadSliderData() {
+            try {
+                const response = await fetch('/content/site.json');
+                const data = await response.json();
+
+                if (data.slider && data.slider.length > 0) {
+                    generateSliderSlides(data.slider);
+                }
+            } catch (error) {
+                console.error('Error loading slider data:', error);
+            }
+        }
+
+        // Generate slider slides from data
+        function generateSliderSlides(sliderData) {
+            const sliderWrapper = document.getElementById('slider-wrapper');
+            if (!sliderWrapper) return;
+
+            sliderWrapper.innerHTML = '';
+
+            sliderData.forEach((slide, index) => {
+                const slideElement = document.createElement('div');
+                slideElement.className = 'swiper-slide hero-slide';
+                slideElement.innerHTML = `
+                    <img src="${slide.image}" alt="Ensi Cam" class="slider-image">
+                `;
+                sliderWrapper.appendChild(slideElement);
+            });
+
+            // Initialize slider after generating slides
+            initHeroSlider();
+        }
+
         // Wait for DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function () {
+            // Load slider data first
+            loadSliderData();
+
             // Track page load
             trackEvent('page_view', {
                 page_title: document.title,
@@ -1398,6 +2122,14 @@
                         if (modalVideo) {
                             modalVideo.pause();
                             modalVideo.src = '';
+                            modalVideo.style.display = 'block';
+                        }
+
+                        // Stop YouTube video by clearing src before removing iframe
+                        const existingIframe = videoModal.querySelector('.modal-iframe');
+                        if (existingIframe) {
+                            existingIframe.src = '';
+                            existingIframe.remove();
                         }
                     }
                 });
@@ -1414,6 +2146,14 @@
                         if (modalVideo) {
                             modalVideo.pause();
                             modalVideo.src = '';
+                            modalVideo.style.display = 'block';
+                        }
+
+                        // Stop YouTube video by clearing src before removing iframe
+                        const existingIframe = modal.querySelector('.modal-iframe');
+                        if (existingIframe) {
+                            existingIframe.src = '';
+                            existingIframe.remove();
                         }
                     }
                 }
@@ -1514,6 +2254,11 @@
             }
         });
     </script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Swiper Animate Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-animate.min.js"></script>
+
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {

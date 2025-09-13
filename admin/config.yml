@@ -20,9 +20,14 @@ collections:
         name: "site"
         format: "json"
         fields:
-          - { label: "Öne çıkan resim", name: "featured_image", widget: "image" }
+          - label: "Slider Resimleri"
+            name: "slider"
+            widget: "list"
+            fields:
+              - { label: "Resim", name: "image", widget: "image" }
           - label: "Videolar"
             name: "videos"
             widget: "list"
             fields:
-              - { label: "Video", name: "file", widget: "file" }
+              - { label: "Video URL (YouTube)", name: "file", widget: "string", hint: "YouTube video URL'si girin (örn: https://www.youtube.com/watch?v=VIDEO_ID)" }
+              - { label: "Video Başlığı", name: "title", widget: "string", required: false, hint: "Video başlığı (opsiyonel)" }

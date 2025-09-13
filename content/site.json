@@ -1,35 +1,53 @@
 {
-  "featured_image": "/assets/frame-60.png",
+  "slider": [
+    {
+      "image": "/assets/slider1.JPG"
+    },
+    {
+      "image": "/assets/slider2.JPG"
+    },
+    {
+      "image": "/assets/slider3.JPG"
+    },
+    {
+      "image": "/assets/slider4.JPG"
+    }
+  ],
   "videos": [
     {
-      "file": "/assets/1.mp4"
+      "file": "https://www.youtube.com/watch?v=wLws3mwt7Lo",
+      "title": "Tanıtım Filmi"
     },
     {
-      "file": "/assets/2.mp4"
+      "file": "https://youtu.be/hL_xjs3zR28",
+      "title": "Tesisimiz"
     },
     {
-      "file": "/assets/3.mp4"
+      "file": "https://youtu.be/lX4mp5jjzAg",
+      "title": "Otomatik Cam Kesim Hattı"
     },
     {
-      "file": "/assets/4.mp4"
+      "file": "https://youtube.com/shorts/awBcKpBN4Jk",
+      "title": "Jaluzi Cam Üretimimiz"
     },
     {
-      "file": "/assets/5.mp4"
+      "file": "https://youtu.be/rzUGzTTYbGA",
+      "title": "2500*3660 Tam Otomatik Çift Cam Hattımız"
     },
     {
-      "file": "/assets/6.mp4"
+      "file": "https://youtu.be/WShUMaIJ8Rs"
     },
     {
-      "file": "/assets/7.mp4"
+      "file": "https://youtu.be/yMtnxEG0SMM"
     },
     {
-      "file": "/assets/8.mp4"
+      "file": "https://youtube.com/shorts/qVJ-xLMpl84"
     },
     {
-      "file": "/assets/9.mp4"
+      "file": "https://youtu.be/XmkRK5kCDSg"
     },
     {
-      "file": "/assets/10.mp4"
+      "file": "https://youtube.com/shorts/igE57JS2n2Q"
     }
   ]
 }
